@@ -11,10 +11,9 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-
+@CrossOrigin(origins = "http://localhost:4200")
 @RestController
 @RequestMapping("/garage")
-@CrossOrigin(origins = "http://localhost:4200")
 public class GarageController {
     @Autowired
     private GarageService garageService;
@@ -60,7 +59,7 @@ public class GarageController {
         }
     }
 
-    @PutMapping("/edit")
+    @PatchMapping("/edit/{id}")
     public ResponseEntity<?> editGarage(@RequestBody Garage garage) {
         if (this.garageService.save(garage)) {
             return new ResponseEntity<>(garage,HttpStatus.OK);
